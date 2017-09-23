@@ -1,0 +1,32 @@
+
+version: '2'
+services:
+  shell:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      args:
+      - USR_ID=1000
+      - GRP_ID=1000
+    volumes:
+    - ".:/go/src/proxy"
+    - "$SSH_AUTH_SOCK:$SSH_AUTH_SOCK"
+    environment:
+      SSH_AUTH_SOCK: $SSH_AUTH_SOCK
+
+  godoc:
+    container_name: proxy-godoc
+    extends:
+      service: shell
+    command: godoc -http :6060
+    ports:
+    - "6060:6060"
+
+  serve:
+    container_name: proxy-serve
+    extends:
+      service: shell
+    command: rerun proxy/cmd/proxy --config example/config.toml
+    ports:
+    - "9443:9443"
+    - "9080:9080"

@@ -1,0 +1,9 @@
+
+acme-email = "foo@example.com"
+google-service-account = '''
+  {
+    "type": "service_account"
+  }
+'''
+hostname = "tpv.mydomain.com"
+notification-url = "api.mydomain.com/tpv"
