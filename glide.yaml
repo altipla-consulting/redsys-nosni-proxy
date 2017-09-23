@@ -1,0 +1,22 @@
+package: proxy
+import:
+- package: cloud.google.com/go
+  version: ^0.13.0
+  subpackages:
+  - compute/metadata
+  - datastore
+- package: github.com/juju/errors
+- package: github.com/naoina/toml
+  version: ^0.1.1
+- package: github.com/sirupsen/logrus
+  version: ^1.0.3
+- package: golang.org/x/crypto
+  subpackages:
+  - acme
+  - acme/autocert
+- package: golang.org/x/oauth2
+  subpackages:
+  - google
+- package: google.golang.org/api
+  subpackages:
+  - option
